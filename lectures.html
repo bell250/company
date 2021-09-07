@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lectures</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		
+		<script type="text/javascript">
+			var yearLists = new Array(2); 
+			yearLists["Choose Year"] = [""];
+			yearLists["Year1"] = ["Choose Courses", "English for Specific Purpose", "Study Skills", "Mathematics For Engineers I",
+			"Physics For Engineers I", "ICT Skills", "Principles Of Economics","Principles Of Marketing", "Mathematics For Engineers II",
+			"Engineering Drawing And CAD", "Introduction to Electrical and Electronic Systems", "Computer Programming",
+			"Principles Of Accounting", "IT Infrastructure", "Introduction to Computer Hardware and Maintenance", "Operating Systems and Mobile Devices"]; 
+			yearLists["Year2"] = ["Choose Courses","English For Academic Purpose", "Advanced Computer Programming C++", "Database Design And Management", 
+			"Information Systems", "Computer Architecture", "Web Technology", "GIS(Geographical Information Systems)"]; 
+
+			function yearChange(selectObj) { 
+
+				var idx = selectObj.selectedIndex; 
+
+				var which = selectObj.options[idx].value; 
+				cList = yearLists[which]; 
+
+				var cSelect = document.getElementById("years"); 
+				var len=cSelect.options.length; 
+				while (cSelect.options.length > 0) { 
+					cSelect.remove(0); 
+				} 
+				var newOption; 
+
+				for (var i=0; i<cList.length; i++) { 
+					newOption = document.createElement("option"); 
+					newOption.value = cList[i]; 
+					newOption.text=cList[i]; 
+
+					try { 
+						cSelect.add(newOption);  
+					} 
+					catch (e) { 
+						cSelect.appendChild(newOption); 
+					} 
+				}
+
+			}
+			function courseChange() { 
+				var cSelect = document.getElementById("years").value; 
+
+				// for (var i=0; i<cList.length; i++) { 
+				// if(which=="Year2" && cList[i]=="Web Technology")
+				// {
+				// document.getElementById("notes").innerHTML="Man";
+				// }
+				// else if(which=="Year1")
+				// {
+				// document.getElementById("notes").innerHTML="";
+				// }
+				// else if(which=="Choose Year")
+				// {
+				// document.getElementById("notes").innerHTML="";
+				// }
+				// }
+
+
+				if(cSelect =="Web Technology") {
+					document.getElementById("coursetitle").innerHTML="<b>ITE2163</b>";
+					document.getElementById("coursetext").src="courses/ITE2163.pdf";
+				}
+				else if(cSelect =="Database Design And Management") {
+					document.getElementById("coursetitle").innerHTML="<b>ISY2161</b>";
+					document.getElementById("coursetext").src="courses/ISY2161.pdf";
+				}
+				else {
+					document.getElementById("coursetext").src="";
+					document.getElementById("coursetitle").innerHTML="";
+				}
+
+			}
+		</script>
+   	</head>
+
+   	<body>
+      	<table id="header">
+      		<tr>
+      			<td id="profile">
+					<a href="">
+						<img src="images/profile.png">
+					</a>
+				</td>
+				<td id="menu">
+					<a href="home.html" >Home</a>
+					<a href="lectures.html" class="active">Lectures</a>
+					<a href="table.html" >Time table</a>
+					<a href="playlist.html">Playlist</a>
+					<a href="software.html">Software</a>
+				</td> 
+      		</tr>
+		</table>
+		<hr>
+		<table id="container">
+			<tr align="left">
+				<td>
+					<select class="option" id="select" onchange="yearChange(this);">
+                    <option value="Choose Year">Choose Year</option>
+                    <option value="Year1">Year1</option>
+                    <option value="Year2">Year2</option>
+                    </select>
+                    <br/>
+					<br>
+					<select class="option" id="years" onchange="courseChange()">
+                    <option value="0"></option>
+                    </select>
+               </td> 
+			   
+				<td id="notes">
+					<p><center id="coursetitle"></center></p>
+					<embed id="coursetext" src="" type="application/pdf" width="100%" height="100%"></embed>
+				</td>
+				
+			</tr>
+		</table>
+		<hr>
+		<table id="footer">
+      		<tr>
+      			<td>
+      				<p>&copy;Group &lt;3&gt; 2021</p>
+				</td> 
+      		</tr>
+		</table>
+   	</body>
+</html> 
